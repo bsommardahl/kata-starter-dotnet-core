@@ -20,4 +20,4 @@
 
 3) Learn what is a “Kata” and see a few in action - http://codekata.com/
 
-4) Check out the [String Calculator](/katas/string-calculator) kata we will be learning.
+4) Check out the [String Calculator](/katas/string_calculator.md) kata we will be learning.
