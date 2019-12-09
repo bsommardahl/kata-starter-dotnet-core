@@ -19,3 +19,5 @@
 2) Get some pointers on how to act while pairing - https://awkwardcoder.com/7-ways-to-win-with-pair-programming-c678c235be2d
 
 3) Learn what is a “Kata” and see a few in action - http://codekata.com/
+
+4) Check out the [String Calculator](/katas/string-calculator) kata we will be learning.
