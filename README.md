@@ -2,7 +2,7 @@
 
 ### For Best Results
 
-1) Install Jetbrains Rider 2019.2.3 (free evaluation).
+1) Install Jetbrains Rider 2019.3.1 (free evaluation).
 
 2) Install Dotnet SDK 2.2.
 

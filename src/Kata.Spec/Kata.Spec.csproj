@@ -6,18 +6,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="FluentAssertions" Version="5.6.0" />
+      <PackageReference Include="FluentAssertions" Version="5.10.2" />
       <PackageReference Include="Machine.Specifications" Version="1.0.0" />
-      <PackageReference Include="Machine.Specifications.Runner.VisualStudio" Version="2.8.2" />
-      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
+      <PackageReference Include="Machine.Specifications.Runner.VisualStudio" Version="2.9.0" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Kata\Kata.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="when_calculating_the_sum" />
     </ItemGroup>
 
 </Project>
