@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Machine.Specifications;
 
-namespace Kata.Spec
+namespace Kata.Spec.StringCalc
 {
     public class when_feeding_the_monkey
     {
@@ -17,6 +17,9 @@ namespace Kata.Spec
             _systemUnderTest.Belly.Should().Contain("banana");
     }
     
+    // String Calculator Kata 
+    // Build a function that can take in a formatted string and return the sum
+    //
     // Given the user input is empty when calculating the sum then it should return zero.
     // Given the user input is one number when calculating the sum then it should return the same number. (example "3" should equal 3)
     // Given the user input is two numbers when calculating the sum then it should return the sum of those numbers. (example "1,2" should equal 3)
