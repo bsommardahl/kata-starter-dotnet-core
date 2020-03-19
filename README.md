@@ -21,3 +21,7 @@
 3) Learn what is a “Kata” and see a few in action - http://codekata.com/
 
 4) Check out the [String Calculator](/katas/string_calculator.md) kata we will be learning.
+
+### Extras
+
+If you'd like to use the live templates that Byron uses, check the [templates folder](templates) for template content and instructions.
