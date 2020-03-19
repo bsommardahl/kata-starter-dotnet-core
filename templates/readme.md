@@ -4,3 +4,8 @@ Adding live templates to rider is easy! Check out this link for instructions: ht
 
 - [spec](spec.cs)
 - [sadspec](sadspec.cs)
+
+The order of steps should be:
+- spec_name
+- do_something
+- sut
