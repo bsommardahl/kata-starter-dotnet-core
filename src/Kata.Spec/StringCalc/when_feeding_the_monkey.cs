@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Machine.Specifications;
 
 namespace Kata.Spec.StringCalc
@@ -6,29 +7,151 @@ namespace Kata.Spec.StringCalc
     public class when_feeding_the_monkey
     {
         static Monkey _systemUnderTest;
-        
-        Establish context = () => 
+
+        Establish context = () =>
             _systemUnderTest = new Monkey();
 
-        Because of = () => 
+        Because of = () =>
             _systemUnderTest.Eat("banana");
 
         It should_have_the_food_in_its_belly = () =>
             _systemUnderTest.Belly.Should().Contain("banana");
     }
-    
-    // String Calculator Kata 
-    // Build a function that can take in a formatted string and return the sum
-    //
-    // Given the user input is empty when calculating the sum then it should return zero.
-    // Given the user input is one number when calculating the sum then it should return the same number. (example "3" should equal 3)
-    // Given the user input is two numbers when calculating the sum then it should return the sum of those numbers. (example "1,2" should equal 3)
-    // Given the user input is an unknown amount of numbers when calculating the sum then it should return the sum of all the numbers. (example "1,2,3" should equal 6)
-    // Given the user input is multiple numbers with new line and comma delimiters when calculating the sum then it should return the sum of all the numbers. (example "1\n2,3" should equal 6)
-    // Given the user input is multiple numbers with a custom single-character delimiter when calculating the sum then it should return the sum of all the numbers. (example “//;\n1;2” should return 3)
-    // Given the user input contains one negative number when calculating the sum then it should throw an exception "negatives not allowed: x" (where x is the negative number).
-    // Given the user input contains multiple negative numbers mixed with positive numbers when calculating the sum then it should throw an exception "negatives not allowed: x, y, z" (where x, y, z are only the negative numbers).
-    // Given the user input contains numbers larger than 1000 when calculating the sum it should only sum the numbers less than 1001. (example 2 + 1001 = 2)
-    // Given the user input is multiple numbers with a custom multi-character delimiter when calculating the sum then it should return the sum of all the numbers. (example: “//[]\n12***3” should return 6)
-    // Given the user input is multiple numbers with multiple custom delimiters when calculating the sum then it should return the sum of all the numbers. (example “//[][%]\n12%3” should return 6)
+
+    public class when_user_input_is_empty
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Add(); };
+
+        It should_return_zeo = () => { _result.Should().Be(0); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
+
+    public class when_user_input_is_one_number
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Add("1"); };
+
+        It should_return_that_number = () => { _result.Should().Be(1); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
+
+    public class when_adding_two_numbers
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Add("1,2"); };
+
+        It should_return_the_sum = () => { _result.Should().Be(3); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
+
+    public class when_adding_an_unknown_amount_of_numbers
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Add("1,2,3"); };
+
+        It should_return_the_sum_of_all = () => { _result.Should().Be(6); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
+
+    public class when_using_a_comma_and_new_line_delimiter
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Add("1\n2,3"); };
+
+        It should_return_the_sum_of_the_numbers = () => { _result.Should().Be(6); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
+
+    public class when_using_a_custom_delimiter
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Add("//;\n1;2;3"); };
+
+        It should_return_the_sum_of_the_numbers = () => { _result.Should().Be(6); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
+
+    public class when_user_input_includes_a_negative_number
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _exception = Catch.Exception(() => _systemUnderTest.Add("1,-2,3")); };
+
+        It should_throw_an_exception_listing_the_number = () =>
+        {
+            _exception.Message.Should().Be("negatives not allowed: -2");
+        };
+
+        static Calculator _systemUnderTest;
+        static Exception _exception;
+    }
+
+    public class when_user_input_includes_multiple_negative_numbers
+    {
+        Establish _context = () =>
+        {
+            _systemUnderTest = new Calculator();
+        };
+
+        Because of = () => { _exception = Catch.Exception(()=> _systemUnderTest.Add("1,-2, -3, 4")); };
+
+        It should_return_a_message_listing_them_all = () => { _exception.Message.Should().Be("negatives not allowed: -2, -3"); };
+        static Calculator _systemUnderTest;
+        static Exception _exception;
+    }
+
+    public class when_including_numbers_larger_than_1000
+    {
+        Establish _context = () =>
+        {
+            _systemUnderTest = new Calculator();
+        };
+
+        Because of = () => { _result = _systemUnderTest.Add("1,2,2000,3"); };
+
+        It should_only_sum_the_smaller_numbers = () => { _result.Should().Be(6); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
+
+    public class when_using_a_multi_char_delimiter
+    {
+        Establish _context = () =>
+        {
+            _systemUnderTest = new Calculator();
+        };
+
+        Because of = () => { _result = _systemUnderTest.Add("//[***]\n12***3"); };
+
+        It should_return_the_sum_of_the_numbers = () => { _result.Should().Be(15); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
+
+    public class when_using_multiple_delimiters
+    {
+        Establish _context = () =>
+        {
+            _systemUnderTest = new Calculator();
+        };
+
+        Because of = () => { _result = _systemUnderTest.Add("//[*][%]\n12%3*1"); };
+
+        It should_do_something = () => { _result.Should().Be(16); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
 }
