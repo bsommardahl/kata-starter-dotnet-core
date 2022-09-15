@@ -47,14 +47,29 @@ namespace Kata.Spec.StringCalc
         Because of = () =>
             _result = _systemUnderTest.Calculate("1,3");
 
-        It should_return_int_three = () =>
+        It should_return_int_four = () =>
             _result.Should().Be(4);
+
+        static int _result;
+    }
+    
+    public class when_summing_many_numbers
+    {
+        // Given the user input is an unknown amount of numbers when calculating the sum then it should return the sum of all the numbers. (example "1,2,3" should equal 6)
+        static Calculator _systemUnderTest;
+        Establish context = () =>
+            _systemUnderTest = new Calculator();
+        
+        Because of = () =>
+            _result = _systemUnderTest.Calculate("1,3,5");
+
+        It should_return_int_nine = () =>
+            _result.Should().Be(9);
 
         static int _result;
     }
 }
 
-// Given the user input is an unknown amount of numbers when calculating the sum then it should return the sum of all the numbers. (example "1,2,3" should equal 6)
 // Given the user input is multiple numbers with new line and comma delimiters when calculating the sum then it should return the sum of all the numbers. (example "1\n2,3" should equal 6)
 // Given the user input is multiple numbers with a custom single-character delimiter when calculating the sum then it should return the sum of all the numbers. (example “//;\n1;2” should return 3)
 // Given the user input contains one negative number when calculating the sum then it should throw an exception "negatives not allowed: x" (where x is the negative number).
