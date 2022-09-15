@@ -4,7 +4,7 @@ namespace Kata
     {
         public int Calculate(string numbersToSum)
         {
-            return -1;
+            return 0;
         }
     }
 }
