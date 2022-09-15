@@ -36,9 +36,24 @@ namespace Kata.Spec.StringCalc
 
         static int _result;
     }
+    
+    public class when_summing_two_number
+    {
+        static Calculator _systemUnderTest;
+
+        Establish context = () =>
+            _systemUnderTest = new Calculator();
+        
+        Because of = () =>
+            _result = _systemUnderTest.Calculate("1,3");
+
+        It should_return_int_three = () =>
+            _result.Should().Be(4);
+
+        static int _result;
+    }
 }
 
-// Given the user input is two numbers when calculating the sum then it should return the sum of those numbers. (example "1,2" should equal 3)
 // Given the user input is an unknown amount of numbers when calculating the sum then it should return the sum of all the numbers. (example "1,2,3" should equal 6)
 // Given the user input is multiple numbers with new line and comma delimiters when calculating the sum then it should return the sum of all the numbers. (example "1\n2,3" should equal 6)
 // Given the user input is multiple numbers with a custom single-character delimiter when calculating the sum then it should return the sum of all the numbers. (example “//;\n1;2” should return 3)
